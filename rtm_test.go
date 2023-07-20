@@ -21,3 +21,4 @@ func TestInsertmonitor(t *testing.T) {
 	hsl := Inserttamu(MongoConn, nama, email, kota, status)
 	fmt.Println(hsl)
 }
+

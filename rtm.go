@@ -37,7 +37,7 @@ func Inserttamu(db *mongo.Database, nama string, email string, kota string, stat
 }
 func GetDataNama(nam string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"kota": nam}
+	filter := bson.M{"nama": nam}
 	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetDataNama :", err)
@@ -63,26 +63,3 @@ func GetDataStatus(tus string) (data []Tamu) {
 	return
 }
 
-func DeleteDataNama(nama string) (data []Tamu) {
-	dena := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"nama": nama}
-	err, _ := dena.DeleteOne(context.TODO(), filter)
-	if err != nil {
-		fmt.Printf("DeleteDataNama : %v\n", err)
-	}
-	fmt.Println("Succes Delete data")
-	return data
-
-}
-
-func DeleteDataStatus(stats string) (data []Tamu) {
-	dena := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"status": stats}
-	err, _ := dena.DeleteOne(context.TODO(), filter)
-	if err != nil {
-		fmt.Printf("DeleteDataStatus : %v\n", err)
-	}
-	fmt.Println("Succes Delete data")
-	return data
-
-}
