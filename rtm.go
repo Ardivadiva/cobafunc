@@ -35,7 +35,7 @@ func Inserttamu(db *mongo.Database, nama string, email string, kota string, stat
 	datatamu.Status = status
 	return InsertOneDoc(db, "datatamu", datatamu)
 }
-func GetDatatamu(ket string) (data []Tamu) {
+func GetDatatamu(kot string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
 	filter := bson.M{"kota": kot}
 	cursor, err := user.Find(context.TODO(), filter)
