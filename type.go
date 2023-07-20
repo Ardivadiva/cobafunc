@@ -17,7 +17,7 @@ func InsertOneDoc(db *mongo.Database, collection string, doc interface{}) (inser
 }
 
 func InsertDataListTamu(db *mongo.Database, name string, notelp string, email string, kota string) (InsertedID interface{}) {
-	var datalisttamu Listtamu
+	var datalisttamu listtamu
 	datalisttamu.Name = name
 	datalisttamu.Notelp = notelp
 	datalisttamu.Email = email
@@ -25,7 +25,7 @@ func InsertDataListTamu(db *mongo.Database, name string, notelp string, email st
 	return InsertOneDoc(db, "datalisttamu", datalisttamu)
 }
 
-func GetDataListTamu(kota string, db *mongo.Database, col string) (data Listtamu) {
+func GetDataListTamu(kota string, db *mongo.Database, col string) (data listtamu) {
 	act := db.Collection(col)
 	filter := bson.M{"kota": kota}
 	err := act.FindOne(context.TODO(), filter).Decode(&data)
@@ -34,7 +34,7 @@ func GetDataListTamu(kota string, db *mongo.Database, col string) (data Listtamu
 	}
 	return data
 }
-func GetDataName(Name string, db *mongo.Database, col string) (data Listtamu) {
+func GetDataName(Name string, db *mongo.Database, col string) (data listtamu) {
 	accou := db.Collection(col)
 	filter := bson.M{"name": Name}
 	err := accou.FindOne(context.TODO(), filter).Decode(&data)
@@ -43,7 +43,7 @@ func GetDataName(Name string, db *mongo.Database, col string) (data Listtamu) {
 	}
 	return data
 }
-func DeleteDataListTamu(kota string, db *mongo.Database, col string) (data Listtamu) {
+func DeleteDataListTamu(kota string, db *mongo.Database, col string) (data listtamu) {
 	dct := db.Collection(col)
 	filter := bson.M{"kota": kota}
 	err, _ := dct.DeleteOne(context.TODO(), filter)
@@ -54,7 +54,7 @@ func DeleteDataListTamu(kota string, db *mongo.Database, col string) (data Listt
 	return data
 }
 
-func DeleteDataName(Name string, db *mongo.Database, col string) (data Listtamu) {
+func DeleteDataName(Name string, db *mongo.Database, col string) (data listtamu) {
 	dena := db.Collection(col)
 	filter := bson.M{"name": Name}
 	err, _ := dena.DeleteOne(context.TODO(), filter)
