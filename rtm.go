@@ -37,7 +37,7 @@ func Inserttamu(db *mongo.Database, nama string, email string, kota string, stat
 }
 func GetDatatamu(ket string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"kota": kota}
+	filter := bson.M{"kota": kot}
 	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetDataTamu :", err)
