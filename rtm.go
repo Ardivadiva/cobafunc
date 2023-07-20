@@ -63,3 +63,16 @@ func GetDataStatus(tus string) (data []Tamu) {
 	return
 }
 
+func GetDataKota(kot string) (data []Tamu) {
+	user1 := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"kota": kot}
+	cursor, err := user1.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataKota :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
