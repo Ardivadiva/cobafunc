@@ -16,16 +16,16 @@ func InsertOneDoc(db *mongo.Database, collection string, doc interface{}) (inser
 	return insertResult.InsertedID
 }
 
-func InsertDataListTamu(db *mongo.Database, name string, notelp string, email string, kota string) (InsertedID interface{}) {
-	var datalisttamu listtamu
-	datalisttamu.Name = name
-	datalisttamu.Notelp = notelp
-	datalisttamu.Email = email
-	datalisttamu.Kota = kota
-	return InsertOneDoc(db, "datalisttamu", datalisttamu)
+func InsertDataTamuu(db *mongo.Database, nama, email, kota string, status string) (InsertedID interface{}) {
+	var datatamuu Datatamuu
+	datatamuu.Nama = nama
+	datatamuu.Email = email
+	datatamuu.Kota = kota
+	datatamuu.Status = status
+	return InsertOneDoc(db, "data_tamuu", datatamuu)
 }
 
-func GetDataListTamu(kota string, db *mongo.Database, col string) (data listtamu) {
+func GetDataTamuu(kota string, db *mongo.Database, col string) (data Datatamuu) {
 	act := db.Collection(col)
 	filter := bson.M{"kota": kota}
 	err := act.FindOne(context.TODO(), filter).Decode(&data)
@@ -34,32 +34,32 @@ func GetDataListTamu(kota string, db *mongo.Database, col string) (data listtamu
 	}
 	return data
 }
-func GetDataName(Name string, db *mongo.Database, col string) (data listtamu) {
+func GetDataNama(nama string, db *mongo.Database, col string) (data Datatamuu) {
 	accou := db.Collection(col)
-	filter := bson.M{"name": Name}
+	filter := bson.M{"nama": nama}
 	err := accou.FindOne(context.TODO(), filter).Decode(&data)
 	if err != nil {
-		fmt.Printf("getdatalisttamu: %v\n", err)
+		fmt.Printf("getdatatamuu: %v\n", err)
 	}
 	return data
 }
-func DeleteDataListTamu(kota string, db *mongo.Database, col string) (data listtamu) {
+func DeleteDataTamuu(kota string, db *mongo.Database, col string) (data Datatamuu) {
 	dct := db.Collection(col)
 	filter := bson.M{"kota": kota}
 	err, _ := dct.DeleteOne(context.TODO(), filter)
 	if err != nil {
-		fmt.Printf("DeleteDataListTamu : %v\n", err)
+		fmt.Printf("DeleteDataTamuu : %v\n", err)
 	}
 	fmt.Println("Succes Delete data")
 	return data
 }
 
-func DeleteDataName(Name string, db *mongo.Database, col string) (data listtamu) {
+func DeleteDataNama(nama string, db *mongo.Database, col string) (data Datatamuu) {
 	dena := db.Collection(col)
-	filter := bson.M{"name": Name}
+	filter := bson.M{"nama": nama}
 	err, _ := dena.DeleteOne(context.TODO(), filter)
 	if err != nil {
-		fmt.Printf("DeleteDataName : %v\n", err)
+		fmt.Printf("DeleteDataNama : %v\n", err)
 	}
 	fmt.Println("Succes Delete data")
 	return data

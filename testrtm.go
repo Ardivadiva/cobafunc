@@ -12,31 +12,31 @@ var MongoString string = os.Getenv("MONGOSTRING")
 
 var MongoInfo = atdb.DBInfo{
 	DBString: MongoString,
-	DBName:   "listtamu",
+	DBName:   "dblisttamu",
 }
 
 var MongoConn = atdb.MongoConnect(MongoInfo)
 
 func TestInsertData(t *testing.T) {
-	name := "Dipa"
-	notelp := "6287815683284"
-	email := "ardvprw@gmail.com"
-	kota := "Mojokerto"
-	hasil := InsertDataListTamu(MongoConn, name, notelp, email, kota)
+	Nama := "Dipa"
+	Email := "ardvprw@gmail.com"
+	Kota := "Mojokerto"
+	Status := "Mahasiswi"
+	hasil := InsertDataTamuu(MongoConn, Nama, Email, Kota, Status)
 	fmt.Println(hasil)
 
 }
 
-func TestGetDatatamu(t *testing.T) {
-	name := "Dipa"
-	hasil := GetDataListTamu(name, MongoConn, "data_listtamu")
+func TestGetDataTamuu(t *testing.T) {
+	Nama := "Dipa"
+	hasil := GetDataTamuu(Nama, MongoConn, "data_tamuu")
 	fmt.Println(hasil)
 
 }
 
 func TestDeleteData(t *testing.T) {
-	kota := "Mojokerto"
-	hasil := DeleteDataListTamu(kota, MongoConn, "data_listtamu")
+	Status := "Mahasiswi"
+	hasil := DeleteDataTamuu(Status, MongoConn, "data_tamuu")
 	fmt.Println(hasil)
 
 }
