@@ -18,7 +18,24 @@ func TestInsertmonitor(t *testing.T) {
 	email := "ardvprw@gmail.com"
 	kota := "Mojokerto"
 	status := "Mahasiswi"
-	hsl := Inserttamu(MongoConn, nama, email, kota, status)
+	hsl := Inserttamu(nama, email, kota, status)
 	fmt.Println(hsl)
 }
 
+func TestGetDataNama(t *testing.T) {
+	nama := "Dipa"
+	dt := GetDataNama(nama)
+	fmt.Println(dt)
+}
+
+func TestGetDataStatus(t *testing.T) {
+	status := "Mahasiswi"
+	dt := GetDataStatus(status)
+	fmt.Println(dt)
+}
+
+func TestGetDataKota(t *testing.T) {
+	kota := "Mojokerto"
+	dt := GetDataKota(kota)
+	fmt.Println(dt)
+}

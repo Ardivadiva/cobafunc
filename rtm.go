@@ -20,20 +20,20 @@ func MongoConnect(dbname string) (db *mongo.Database) {
 	return client.Database(dbname)
 }
 
-func InsertOneDoc(db *mongo.Database, collection string, doc interface{}) (insertedID interface{}) {
-	insertResult, err := db.Collection(collection).InsertOne(context.TODO(), doc)
+func InsertOneDoc(db string, collection string, doc interface{}) (insertedID interface{}) {
+	insertResult, err := MongoConnect(db).Collection(collection).InsertOne(context.TODO(), doc)
 	if err != nil {
 		fmt.Printf("InsertOneDoc: %v\n", err)
 	}
 	return insertResult.InsertedID
 }
-func Inserttamu(db *mongo.Database, nama string, email string, kota string, status string) (InsertedID interface{}) {
+func Inserttamu(nama string, email string, kota string, status string) (InsertedID interface{}) {
 	var datatamu Tamu
 	datatamu.Nama = nama
 	datatamu.Email = email
 	datatamu.Kota = kota
 	datatamu.Status = status
-	return InsertOneDoc(db, "datatamu", datatamu)
+	return InsertOneDoc("dblisttamu", "datatamu", datatamu)
 }
 func GetDataNama(nam string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
