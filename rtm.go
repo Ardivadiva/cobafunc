@@ -35,16 +35,54 @@ func Inserttamu(db *mongo.Database, nama string, email string, kota string, stat
 	datatamu.Status = status
 	return InsertOneDoc(db, "datatamu", datatamu)
 }
-func GetDatatamu(kot string) (data []Tamu) {
+func GetDataNama(nam string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
-	filter := bson.M{"kota": kot}
+	filter := bson.M{"kota": nam}
 	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		fmt.Println("GetDataTamu :", err)
+		fmt.Println("GetDataNama :", err)
 	}
 	err = cursor.All(context.TODO(), &data)
 	if err != nil {
 		fmt.Println(err)
 	}
 	return
+}
+
+func GetDataStatus(tus string) (data []Tamu) {
+	user1 := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"status": tus}
+	cursor, err := user1.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetDataStatus :", err)
+	}
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
+
+func DeleteDataNama(nama string) (data []Tamu) {
+	dena := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"nama": nama}
+	err, _ := dena.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		fmt.Printf("DeleteDataNama : %v\n", err)
+	}
+	fmt.Println("Succes Delete data")
+	return data
+
+}
+
+func DeleteDataStatus(stats string) (data []Tamu) {
+	dena := MongoConnect("dblisttamu").Collection("datatamu")
+	filter := bson.M{"status": stats}
+	err, _ := dena.DeleteOne(context.TODO(), filter)
+	if err != nil {
+		fmt.Printf("DeleteDataStatus : %v\n", err)
+	}
+	fmt.Println("Succes Delete data")
+	return data
+
 }
