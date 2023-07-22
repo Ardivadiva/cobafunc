@@ -22,9 +22,9 @@ func TestInsertmonitor(t *testing.T) {
 	fmt.Println(hsl)
 }
 
-func TestGetDataNama(t *testing.T) {
+func TestGetDatatam(t *testing.T) {
 	nama := "Dipa"
-	dt := GetDataNama(nama)
+	dt := GetDatatam(nama)
 	fmt.Println(dt)
 }
 

@@ -35,12 +35,12 @@ func Inserttamu(nama string, email string, kota string, status string) (Inserted
 	datatamu.Status = status
 	return InsertOneDoc("dblisttamu", "datatamu", datatamu)
 }
-func GetDataNama(nam string) (data []Tamu) {
+func GetDatatam(nam string) (data []Tamu) {
 	user := MongoConnect("dblisttamu").Collection("datatamu")
 	filter := bson.M{"nama": nam}
 	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		fmt.Println("GetDataNama :", err)
+		fmt.Println("GetDatatam :", err)
 	}
 	err = cursor.All(context.TODO(), &data)
 	if err != nil {
@@ -76,3 +76,35 @@ func GetDataKota(kot string) (data []Tamu) {
 	}
 	return
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
